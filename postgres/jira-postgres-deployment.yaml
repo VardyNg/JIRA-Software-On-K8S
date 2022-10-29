@@ -1,0 +1,37 @@
+# jira-postgres-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jira-postgres
+  namespace: jira
+  labels:
+    app: jira-postgres
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: jira-postgres
+  template:
+    metadata:
+      labels:
+        app: jira-postgres
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64 # change to amd64 if you use amd64
+      containers:
+        - name: postgres
+          image: arm64v8/postgres:11.4 # change to postgres:11.4 if you use amd64
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: jira-postgres-config
+          resources:
+            requests: 
+              cpu: "0.5" 
+              memory: "0.5Gi"
+            limits:
+              cpu: "0.5"
+              memory: "0.5Gi"

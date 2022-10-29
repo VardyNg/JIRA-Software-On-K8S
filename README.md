@@ -1,0 +1,2 @@
+### About this Repo
+This repo contains the configuration to deploy JIRA Software on Kubernetes Cluster, for the detailed content, please visit my blog post [Deploy JIRA Software on Kubernetes Cluster](https://www.jianshu.com/p/2b2b2b2b2b2b).

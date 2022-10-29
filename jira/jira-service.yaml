@@ -1,0 +1,17 @@
+# jira-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: jira
+  namespace: jira
+  labels:
+    app: jira
+spec:
+  type: ClusterIP
+  ports:
+    - name: ui
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: jira

@@ -1,0 +1,37 @@
+# jira-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jira
+  namespace: jira
+  labels:
+    app: jira
+spec:
+  selector:
+    matchLabels:
+      app: jira
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jira
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      containers:
+      - name: jira
+        image: atlassian/jira-software:8.22.4-jdk11
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests: 
+            cpu: "2" 
+            memory: "4Gi"
+          limits:
+            cpu: "2.5"
+            memory: "4Gi"
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      restartPolicy: Always
+      securityContext:
+        runAsUser: 0

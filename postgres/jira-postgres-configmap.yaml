@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jira-postgres-config
+  namespace: jira
+  labels:
+    app: jira-postgres
+data:
+  POSTGRES_DB: jira-postgres-psql-db
+  POSTGRES_USER: jiraUser
+  POSTGRES_PASSWORD: LINho284yh15sLOm123
